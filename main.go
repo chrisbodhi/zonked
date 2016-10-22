@@ -10,13 +10,13 @@ func main() {
 
     router.GET("/", func(c *gin.Context) {
         c.HTML(http.StatusOK, "index.tmpl", gin.H{
-	    "title": "Main SSSsssite",
+	    "title": "iamtiredofeverything.today",
 	})
     })
 
     router.GET("/api", func(c *gin.Context) {
         c.JSON(200, gin.H{
-            "message": "pong",
+            "message": "Can no longer stand people's excitement about ping-pong.",
             "author": "cb",
             "time": time.Now(),
         })
