@@ -1,5 +1,32 @@
 <html>
-        <h1>
-                {{ .title }}
-        </h1>
+  <h1>
+    {{ .title }}
+  </h1>
+
+  <div id="messages"></div>
+
+  <script>
+    var req = new XMLHttpRequest();
+    var div = document.getElementById('messages');
+
+    req.open('GET', '/api');
+
+    req.onload = function(e) {
+      if (req.status === 200) {
+        var res = JSON.parse(req.responseText);
+
+        var msgElement = document.createElement('p');
+        var authorElement = document.createElement('p');
+
+        msgElement.innerHTML = res.message;
+        authorElement.innerHTML = res.author;
+
+        div.appendChild(msgElement);
+        msgElement.appendChild(authorElement);
+      }
+    }
+
+    req.send();
+
+  </script>
 <html>
