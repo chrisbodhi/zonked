@@ -1,17 +1,25 @@
 package main
 
+import "net/http"
 import "time"
 import "github.com/gin-gonic/gin"
 
 func main() {
-    r := gin.Default()
+    router := gin.Default()
+    router.LoadHTMLGlob("templates/*")
 
-    r.GET("/api", func(c *gin.Context) {
+    router.GET("/", func(c *gin.Context) {
+        c.HTML(http.StatusOK, "index.tmpl", gin.H{
+	    "title": "Main SSSsssite",
+	})
+    })
+
+    router.GET("/api", func(c *gin.Context) {
         c.JSON(200, gin.H{
             "message": "pong",
             "author": "cb",
             "time": time.Now(),
         })
     })
-    r.Run() // listen and server on 0.0.0.0:8080
+    router.Run() // listen and server on 0.0.0.0:8080
 }
