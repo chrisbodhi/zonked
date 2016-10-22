@@ -9,8 +9,29 @@ func main() {
     router.LoadHTMLGlob("templates/*")
 
     router.GET("/", func(c *gin.Context) {
+	type Message struct {
+	  Message  string
+	  Author   string
+	}
+
+	type Messages []Message
+
+	var msgs = Messages{
+	  Message{
+		  "Can no longer stand people's excitement about ping-pong.",
+		  "structy",
+	  },
+
+	  Message{
+		  "So tired",
+		  "GH botnet",
+	  },
+
+	}
+
         c.HTML(http.StatusOK, "index.tmpl", gin.H{
 	    "title": "iamtiredofeverything.today",
+	    "msgs": msgs,
 	})
     })
 

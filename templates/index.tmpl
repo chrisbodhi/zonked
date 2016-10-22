@@ -3,6 +3,13 @@
     {{ .title }}
   </h1>
 
+  <h3>
+    {{ range .msgs }}
+       {{ .Message }}
+       {{ .Author }}
+    {{ end }}
+  </h3>
+
   <div id="messages"></div>
 
   <script>
